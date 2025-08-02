@@ -4,9 +4,17 @@ interface Iprops {
   title: string;
   value: number | string;
   color?: string;
+  comment?: string;
+  icon: string;
 }
 
-const HomeCard: React.FC<Iprops> = ({ title, value, color = "primary" }) => {
+const HomeCard: React.FC<Iprops> = ({
+  title,
+  value,
+  color = "primary",
+  comment,
+  icon,
+}) => {
   return (
     <div className="col-md-6 col-xl-3">
       <div className="card shadow-lg">
@@ -15,13 +23,12 @@ const HomeCard: React.FC<Iprops> = ({ title, value, color = "primary" }) => {
           <h4 className="mb-3">
             {value}
             <span
-              className={`badge bg-light-${color} border-0 border-${color} m-2"`}>
-              <i className="ti ti-users" />
+              className={`badge bg-light-${color} border-0 border-${color} m-2`}>
+              <i className={icon} />
             </span>
           </h4>
           <p className="mb-0 text-muted text-sm">
-            You made an extra <span className={`text-${color}`}>35,000</span>{" "}
-            this year
+            {comment ? comment : "No additional information available."}
           </p>
         </div>
       </div>

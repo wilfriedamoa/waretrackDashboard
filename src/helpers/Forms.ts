@@ -37,3 +37,14 @@ export const encodeData = (values: any) => {
   }
   return formData;
 };
+
+export const formatErrors = (
+  errors: { field: string; message: string }[],
+  setErrors: React.Dispatch<React.SetStateAction<any>>,
+) => {
+  const formattedErrors: { [key: string]: string } = {};
+  errors.forEach((error) => {
+    formattedErrors[error.field] = error.message;
+  });
+  setErrors((prev: any) => ({ ...prev, ...formattedErrors }));
+};

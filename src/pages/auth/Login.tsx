@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../../components/Input";
 import SubmitButton from "../../components/SubmitButton";
-import { ResetError, writeErrors } from "../../helpers/Forms";
+import { formatErrors, ResetError } from "../../helpers/Forms";
 import { HttpClientNoToken } from "../../routes/HttpClient";
 import { EndPoints } from "../../routes/EndPoints";
 import { RequestError } from "../../types/RequestError";
@@ -9,7 +9,6 @@ import { noNetWork, noticeMe } from "../../helpers/Notification";
 import { HttpStatusCode } from "axios";
 import { useNavigate } from "react-router";
 import { UserStore } from "../../store/UserStore";
-import { RoleEnum } from "../../enums/RoleEnum";
 
 const Login: React.FC = () => {
   const [data, setData] = useState({
@@ -36,47 +35,24 @@ const Login: React.FC = () => {
     setRequestError({ ...ResetError(requestError) });
     HttpClientNoToken.post(EndPoints.login, data)
       .then((res) => {
-        localStorage.setItem("authToken", res.data?.token);
+        localStorage.setItem("accessToken", res.data?.accessToken);
         initUserDatas({
-          nom: res.data?.user?.nom,
-          prenom: res.data?.user?.prenoms,
-          username: res.data?.user?.username,
-          role: res.data?.user?.role?.libelle,
-          agence: res.data?.user?.agence?.id,
-          agenceLibelle: res.data?.user?.agence?.libelle,
+          email: res.data?.email,
+          username: res.data?.username,
         });
-        noticeMe("success", `Bonjour ${res.data?.user?.username}`);
-        switch (res.data?.user?.role?.libelle) {
-          case RoleEnum.AGENCY_MANAGER:
-            navigate("/gfa/home/chef_agence");
-            break;
-          default:
-            navigate("/gfa");
-            break;
-        }
+        noticeMe("success", `Bonjour ${res.data?.username}`);
+        navigate("/dashboard");
       })
       .catch((err) => {
         if (err.response == undefined) {
           noNetWork();
         } else {
           if (err.response.status === HttpStatusCode.BadRequest) {
-            if (err.response.data?.status) {
-              if (err.response.data?.status === "CHANGE_PASSWORD") {
-                localStorage.setItem("username", data.username);
-                noticeMe("error", err.response.data?.message);
-              } else {
-                localStorage.setItem("username", data.username);
-                noticeMe("error", err.response.data?.message);
-              }
-              navigate("/change/password");
-            } else {
-              setErrors(writeErrors(errors, err.response.data));
-            }
-          }
-          if (err.response.status === HttpStatusCode.Unauthorized) {
+            formatErrors(err.response.data?.errors, setErrors);
+          } else {
             setRequestError({
-              status: err.response.data?.status,
-              message: err.response.data?.message,
+              status: false,
+              message: "username ou mot de passe incorrect",
             });
           }
         }
@@ -93,7 +69,7 @@ const Login: React.FC = () => {
           <div className="auth-header">
             <a href="#">
               <img
-                src="/images/UBA-logo.png"
+                src="https://app.waretrack.online/assets/logo-waretrack-1b57eb0a.png"
                 alt="img"
                 width={200}
                 height={100}
@@ -139,7 +115,7 @@ const Login: React.FC = () => {
                   type="submit"
                   className="d-flex justify-content-center mt-5"
                   isLoading={isLoading}
-                  classButton={"btn-danger w-100"}
+                  classButton={"btn-primary w-100"}
                 />
               </form>
             </div>
@@ -148,8 +124,7 @@ const Login: React.FC = () => {
             {/* <div class=""> */}
             <div className="col my-1">
               <p className="m-0">
-                Copyright © {new Date().getFullYear()}{" "}
-                <a href="#">Leader World Perfect</a>
+                Copyright © {new Date().getFullYear()} <a href="#">ESODEV</a>
               </p>
             </div>
           </div>

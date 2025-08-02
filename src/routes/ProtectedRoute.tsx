@@ -4,7 +4,7 @@ import { Navigate } from "react-router";
 const ProtectedRoute: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("accessToken");
     if (token == null || token === "undefined") {
       setIsAuthenticated(false);
       localStorage.clear();

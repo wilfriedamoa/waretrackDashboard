@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Footer: React.FC = () => {
   return (
@@ -7,19 +8,17 @@ const Footer: React.FC = () => {
         <div className="row">
           <div className="col-sm my-1">
             <p className="m-0">
-              Mantis ♥ crafted by Team{" "}
-              <a
-                href="https://themeforest.net/user/codedthemes"
-                target="_blank">
-                Codedthemes
+              Copyright © {new Date().getFullYear()}
+              <a href="#" target="_blank" className="m-2">
+                ESODEV
               </a>{" "}
-              Distributed by <a href="https://themewagon.com/">ThemeWagon</a>.
+              {/* Distributed by <a href="https://themewagon.com/">ThemeWagon</a>. */}
             </p>
           </div>
           <div className="col-auto my-1">
             <ul className="list-inline footer-link mb-0">
               <li className="list-inline-item">
-                <a href="../index.html">Home</a>
+                <Link to="/dashboard">Home</Link>
               </li>
             </ul>
           </div>

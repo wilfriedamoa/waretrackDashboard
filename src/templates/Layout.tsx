@@ -9,7 +9,7 @@ const Layout: React.FC<BodyProps> = ({ title, children }) => {
   const userStore = UserStore((set) => set.userDatas);
   return (
     <>
-      <Sidebar libelle={userStore.role} agence={userStore.agenceLibelle} />
+      <Sidebar />
       <Header userData={userStore} />
       <div className="pc-container">
         <div className="pc-content">

@@ -17,7 +17,7 @@ File: style.css
   --pc-sidebar-background: #fff;
   --pc-sidebar-color: #141414;
   --pc-sidebar-color-rgb: 20, 20, 20;
-  --pc-sidebar-active-color: #c50e05 !important;
+  --pc-sidebar-active-color: #3C5BE3 !important;
   --pc-sidebar-shadow: 1px 0 0 0px rgb(240 240 240);
   --pc-sidebar-caption-color: #495057;
   --pc-header-background: #fff;
@@ -31,7 +31,7 @@ File: style.css
 [data-pc-theme_contrast="true"] {
   --bs-body-bg: #ffffff;
   --pc-sidebar-background: transparent;
-  --pc-sidebar-active-color: #c50e05;
+  --pc-sidebar-active-color: #3C5BE3;
   --pc-sidebar-shadow: 1px 0 3px 0px #dee2e6;
   --pc-sidebar-border: none;
   --pc-card-box-shadow: 0px 8px 24px rgba(27, 46, 94, 0.08);
@@ -170,6 +170,8 @@ h2,
   --bs-form-invalid-color: #dc3545;
   --bs-form-invalid-border-color: #dc3545;
   --bs-uba-color: #c50e05;
+  --waretrack-icon-color: #855EF6;
+  --waretrack-button-color: #FF7D62;
 }
 
 [data-bs-theme="dark"] {
@@ -9226,6 +9228,15 @@ fieldset:disabled .btn {
 
 .text-dark-emphasis {
   color: var(--bs-dark-text-emphasis) !important;
+}
+
+.text-waretrack-icon-color{
+  --bs-text-opacity: 1;
+  color: rgba(var(--waretrack-icon-color), var(--bs-text-opacity)) !important;
+}
+.text-waretrack-button-color{
+  --bs-text-opacity: 1;
+  color: rgba(var(--waretrack-button-color), var(--bs-text-opacity)) !important;
 }
 
 .link-opacity-10 {
@@ -23038,12 +23049,12 @@ select.form-control[data-multiselectsplitter-secondselect-selector] {
 }
 .auth-main .auth-wrapper.v3 .auth-form {
   flex-direction: column;
-  background: url("../images/UBA-logo.png");
+  background: url("https://app.waretrack.online/assets/logo-waretrack-1b57eb0a.png");
   min-height: 100vh;
   padding: 24px;
   background-repeat: no-repeat;
-  background-size: auto 75%;
-  background-position: left center;
+  background-size: auto 50%;
+  background-position: center;
   position: relative;
   justify-content: space-between;
 }
@@ -23058,7 +23069,7 @@ select.form-control[data-multiselectsplitter-secondselect-selector] {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(173, 181, 189, 0.5);
+  background: rgba(0, 0, 0, 0.04);
   /* background: rgba(255, 255, 255, 0.2); */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -23074,7 +23085,7 @@ select.form-control[data-multiselectsplitter-secondselect-selector] {
   max-width: 480px;
   box-shadow: none;
   border: 1px solid var(--bs-gray-900);
-  background: rgba(52, 58, 64, 0.5);
+  background: rgba(0, 0, 0, 0.04);
 }
 .auth-main .auth-wrapper .auth-form img + span {
   padding-left: 10px;

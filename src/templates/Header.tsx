@@ -60,10 +60,10 @@ const Header: React.FC<{ userData: any }> = ({
                   alt="user-image"
                   className="user-avtar"
                 /> */}
-                <span className="user-avtar rounded-circle bg-danger font-extrabold text-white d-flex justify-content-center align-items-center">
+                <span className="user-avtar rounded-circle bg-primary font-extrabold text-white d-flex justify-content-center align-items-center">
                   {userData?.username?.charAt(0).toUpperCase()}
                 </span>
-                <span>{`${userData?.nom} ${userData?.prenom}`}</span>
+                {/* <span>{`${userData?.nom} ${userData?.prenom}`}</span> */}
               </a>
               <div className="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                 <div className="dropdown-header">
@@ -71,12 +71,12 @@ const Header: React.FC<{ userData: any }> = ({
                     <div className="user-avtar d-flex justify-content-center font-extrabold border text-white bg-danger rounded-circle text-white align-items-center">
                       {userData?.username?.charAt(0).toUpperCase()}
                     </div>
-                    <div className="flex-grow-1 ms-3">
+                    {/* <div className="flex-grow-1 ms-3">
                       <h6 className="mb-1">{`${userData?.nom} ${userData?.prenom}`}</h6>
                       <span>{userData?.role}</span>
-                    </div>
+                    </div> */}
                     <Link
-                      to={"/gfa/logout"}
+                      to={"/dashboard/logout"}
                       className="pc-head-link bg-transparent">
                       <i className="ti ti-power text-danger" />
                     </Link>
@@ -120,11 +120,13 @@ const Header: React.FC<{ userData: any }> = ({
                     role="tabpanel"
                     aria-labelledby="drp-t1"
                     tabIndex={0}>
-                    <Link to={"/gfa/user/profil"} className="dropdown-item">
+                    <Link
+                      to={"/dashboard/user/profil"}
+                      className="dropdown-item">
                       <i className="ti ti-user" />
                       <span> Profile</span>
                     </Link>
-                    <Link to={"/gfa/logout"} className="dropdown-item">
+                    <Link to={"/dashboard/logout"} className="dropdown-item">
                       <i className="ti ti-power" />
                       <span>Deconnexion</span>
                     </Link>

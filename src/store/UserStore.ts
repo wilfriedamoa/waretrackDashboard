@@ -7,24 +7,16 @@ interface IuserStore {
 }
 
 interface IUserData {
-  nom: string;
-  prenom: string;
+  email: string;
   username: string;
-  role: string;
-  agence: string;
-  agenceLibelle: string;
 }
 
 export const UserStore = create<IuserStore>()(
   persist(
     (set) => ({
       userDatas: {
-        nom: "",
-        prenom: "",
+        email: "",
         username: "",
-        role: "",
-        agence: "",
-        agenceLibelle: "",
       },
       setUserDatas: (userData: IUserData) =>
         set(() => ({ userDatas: userData })),
